@@ -1,68 +1,37 @@
-
-
-
-import java.util.*;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class DBConnection {
+    private Connection conn;
 
-    private Connection connection;
-    private String URL;
+    // Modify these as per your DB setup
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/bankdb"; // Change 'bankdb' to your DB name
+    private static final String USER = "root"; // Change to your DB username
+    private static final String PASS = "password"; // Change to your DB password
 
-    public DBConnection() {
-        //URL = "jdbc:odbc:JavaClass";
-        URL ="jdbc:sqlserver://127.0.0.1:1433;databaseName=JavaClass;integratedSecurity=true;";//"user=tang;password=;
-        connection = null;
-
-    }
-
-    public Connection openConn() {
+    public Connection openConn() throws SQLException {
         try {
-            //Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            connection = DriverManager.getConnection(URL);
-            //connection = DriverManager.getConnection(URL, "tang", "xxxxxx");
-        }
-        catch ( Exception e ) {
+            // Load the JDBC driver (optional for newer versions)
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            System.out.println("MySQL JDBC Driver not found.");
             e.printStackTrace();
-            connection = null;
         }
-        return connection;
+
+        conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        return conn;
     }
 
     public void closeConn() {
         try {
-            connection.close();
+            if (conn != null && !conn.isClosed()) {
+                conn.close();
+                System.out.println("Database connection closed.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error closing connection.");
+            e.printStackTrace();
         }
-        catch( Exception e ) {
-           System.err.println ("Can't close the database connection.");
-        }
-    }
-
-     public Vector getNextRow(ResultSet rs,ResultSetMetaData rsmd) throws SQLException
-	 {
-	     Vector currentRow = new Vector();
-
-	     for(int i=1;i<=rsmd.getColumnCount();i++)
-	         switch(rsmd.getColumnType(i))
-	         {
-	              case Types.VARCHAR:
-	              case Types.LONGVARCHAR:
-	                   currentRow.addElement(rs.getString(i));
-	                   break;
-	              case Types.INTEGER:
-	                   currentRow.addElement(new Long(rs.getLong(i)));
-	                   break;
-	              case Types.DOUBLE:
-	              	   currentRow.addElement(new Double(rs.getDouble(i)));
-	                   break;
-	              case Types.FLOAT:
-	              	   currentRow.addElement(new Float(rs.getFloat(i)));
-	                   break;
-	              default:
-	                   System.out.println("Type was: "+ rsmd.getColumnTypeName(i));
-	          }
-
-	          return currentRow;
     }
 }
