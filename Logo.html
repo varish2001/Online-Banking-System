@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Safe Cash - Online Banking</title>
+  <style>
+    body {
+      background: #f7f7f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .logo-container {
+      display: flex;
+      align-items: center;
+      font-family: Arial, sans-serif;
+    }
+    .atm-icon {
+      width: 60px;
+      height: 60px;
+      background-color: orange;
+      border-radius: 10px;
+      position: relative;
+      margin-right: 15px;
+    }
+    .atm-icon::before {
+      content: '';
+      position: absolute;
+      top: 20%;
+      left: 25%;
+      width: 50%;
+      height: 10%;
+      background: white;
+      border-radius: 2px;
+    }
+    .atm-icon::after {
+      content: '';
+      position: absolute;
+      bottom: 15%;
+      left: 20%;
+      width: 60%;
+      height: 30%;
+      background: white;
+      border-radius: 2px;
+    }
+    .logo-text {
+      font-size: 32px;
+      color: orange;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo-container">
+    <div class="atm-icon"></div>
+    <div class="logo-text">Safe Cash</div>
+  </div>
+</body>
+</html>
