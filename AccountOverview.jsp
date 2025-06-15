@@ -1,9 +1,4 @@
-<!--
-/******************************************************************************
-*	Program Author: Kavita for CSCI 6810 Java and the Internet	  *
-*	Date: November, 2018													  *
-*******************************************************************************/
--->
+
 <%@ page import="java.io.*" %>
 <%@ page import="java.util.*" %>
 <%@ page import="java.lang.*" %>
