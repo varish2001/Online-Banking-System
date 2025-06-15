@@ -1,9 +1,5 @@
-/******************************************************************************
-*	Program Author: Dr. Yongming Tang for CSCI 6810 Java and the Internet	  *
-*	Date: September, 2012													  *
-*******************************************************************************/
 
-package com.mishra;
+
 
 import java.util.*;
 import java.sql.*;
