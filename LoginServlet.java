@@ -1,7 +1,4 @@
-/******************************************************************************
-*	Program Author: Dr. Yongming Tang for CSCI 6810 Java and the Internet	  *
-*	Date: September, 2012													  *
-*******************************************************************************/
+
 
 import java.io.*;
 import javax.servlet.*;  //package for GenericServlet
